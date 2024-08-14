@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classifier Result</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="header">
+        Classification Result
+    </div>
+
+    <div class="main-content">
+        <div class="card result-card">
+            <h2>Result</h2>
+            <div class="image-preview" id="imagePreview">
+                <img id="image" src="{{ image_url }}" alt="Uploaded Image">
+            </div>
+            <div class="result-text">
+                <h3>{{ result }}</h3>
+            </div>
+            <a href="/" class="back-button">Back to Classifier</a>
+        </div>
+
+        <div class="card recent-searches-card">
+            <h2>Recent Searches</h2>
+            <div class="recent-images">
+                {% for search in latest_searches %}
+                    <div class="recent-image-item">
+                        <img src="{{ search.image_url }}" alt="Recent Image" style="width: 100px; height: 100px;">
+                        <p>{{ search.result }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

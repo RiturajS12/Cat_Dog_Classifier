@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat or Dog Classifier</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="header">
+        Welcome to the Cat or Dog Classifier!
+    </div>
+
+    <div class="floating-emoji" style="top: 5%; left: 10%;">🐱</div>
+    <div class="floating-emoji" style="top: 10%; left: 30%;">🐶</div>
+    <div class="floating-emoji" style="top: 15%; left: 50%;">🐾</div>
+    <div class="floating-emoji" style="top: 20%; left: 70%;">🐱</div>
+    <div class="floating-emoji" style="top: 25%; left: 90%;">🐶</div>
+    <div class="floating-emoji" style="top: 30%; left: 20%;">🐾</div>
+    <div class="floating-emoji" style="top: 35%; left: 40%;">🐱</div>
+    <div class="floating-emoji" style="top: 40%; left: 60%;">🐶</div>
+    <div class="floating-emoji" style="top: 45%; left: 80%;">🐾</div>
+    <div class="floating-emoji" style="top: 50%; left: 10%;">🐱</div>
+    <div class="floating-emoji" style="top: 55%; left: 30%;">🐶</div>
+    <div class="floating-emoji" style="top: 60%; left: 50%;">🐾</div>
+    <div class="floating-emoji" style="top: 65%; left: 70%;">🐱</div>
+    <div class="floating-emoji" style="top: 70%; left: 90%;">🐶</div>
+    <div class="floating-emoji" style="top: 75%; left: 20%;">🐾</div>
+
+    <div class="main-content">
+        <div class="card upload-card">
+            <h2>🐾 Upload an Image 🐾</h2>
+            <form action="/upload" method="POST" enctype="multipart/form-data" onsubmit="return previewImage()">
+                <label for="file" class="file-label">Choose File</label>
+                <input type="file" id="file" name="file" accept="image/*" onchange="showPreview(event)" required>
+                <input type="submit" value="Upload">
+            </form>
+            <div class="image-preview" id="imagePreview" style="display:none;">
+                <img id="image" src="#" alt="Uploaded Image">
+            </div>
+            <h2>🐾 Preview the Image 🐾</h2>
+        </div>
+
+        <div class="card info-card">
+            <h3>Fun Facts About Cats and Dogs</h3>
+            <ul>
+                <li>Cats have five toes on their front paws, but only four on their back paws.</li>
+                <li>Dogs' noses are unique, much like human fingerprints.</li>
+                <li>Cats can jump up to six times their length.</li>
+                <li>Dogs can learn more than 1000 words.</li>
+                <li>Cats purr at a frequency that promotes healing.</li>
+                <li>Dogs can smell your feelings! They can pick up on subtle changes in your scent that reflect how you're feeling.</li>
+                <li>Whisker fatigue is a real thing! Cats can become overwhelmed by too much stimulation of their whiskers.</li>
+                <li>Dogs' sense of smell is 40 times greater than humans. They can even detect certain diseases like cancer.</li>
+                <li>Cats sleep for 70% of their lives. They need all that sleep to recharge for their bursts of energy.</li>
+            </ul>
+        </div>
+
+        <div class="card info-card">
+            <h3>🐾 Famous Cats and Dogs in History 🐾</h3>
+            <ul>
+                <li><strong>Stubbs:</strong> The honorary mayor of Talkeetna, Alaska.</li>
+                <li><strong>Tommaso:</strong> A cat that inherited $13 million from its owner.</li>
+                <li><strong>Oscar:</strong> A therapy cat known for predicting patients' deaths.</li>
+                <li><strong>Grumpy Cat:</strong> The internet's most famous cat, known for her permanent scowl.</li>
+                <li><strong>Simon:</strong> The only cat to be awarded the Dickin Medal for bravery during WWII.</li>
+                <li><strong>Laika:</strong> The first dog in space.</li>
+                <li><strong>Hachiko:</strong> Known for his remarkable loyalty in Japan.</li>
+                <li><strong>Balto:</strong> The sled dog who led the serum run to Nome, Alaska.</li>
+                <li><strong>Rin Tin Tin:</strong> A famous movie star dog who appeared in 27 films.</li>
+                <li><strong>Bobbie the Wonder Dog:</strong> Traveled 2,551 miles to return home after being lost.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showPreview(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageElement = document.getElementById('image');
+                    const imagePreview = document.getElementById('imagePreview');
+                    imageElement.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('imagePreview').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
